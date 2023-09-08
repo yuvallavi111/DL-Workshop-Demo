@@ -1,10 +1,16 @@
 -f https://download.pytorch.org/whl/cpu/torch_stable.html
+-f https://data.pyg.org/whl/torch-1.7.1+cpu.html
+torch==1.7.1+cpu
+torch-scatter==2.0.7
+torch-sparse==0.6.9
+torchvision==0.8.2
 
+
+opencv-python-headless
+streamlit==1.8.1
+st-clickable-images==0.0.3
+func-timeout==4.3.5
+scikit-learn==1.0.2
+scikit-image==0.19.2
+imageio==2.17.0
 dominate==2.6.0
-pytorch==1.8.1
-torchvision==0.9.1
-Pillow==8.0.1
-numpy==1.19.2
-visdom==0.1.8
-wandb==0.12.18
-streamlit
