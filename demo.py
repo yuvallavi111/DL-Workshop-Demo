@@ -121,7 +121,7 @@ def load_image():
 
 
 def main():
-    st.title("ShoreRestore")
+    st.title("ShoreRestoreDemo")
     load_image()
 
 
