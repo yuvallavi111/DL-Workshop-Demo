@@ -1,8 +1,0 @@
-torch
-torchvision
-dominate
-visdom
-wandb
-streamlit
-numpy
-Pillow
