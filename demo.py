@@ -1,6 +1,9 @@
 import streamlit as st
 import os
 from PIL import Image
+import torch
+
+torch.__version__
 
 root_folder = os.path.abspath("")
 
