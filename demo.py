@@ -104,7 +104,7 @@ def test():
 
 
 def load_image():
-    uploaded_file = st.file_uploader(label="Pick an image to clean")
+    uploaded_file = st.file_uploader(label="Upload a Shore you would like to Restore")
     if uploaded_file is not None:
         image_data = uploaded_file.getvalue()
         st.image(image_data)
@@ -117,7 +117,7 @@ def load_image():
             root_folder, "results/dirty2clean/test_latest/images/input_fake.png"
         )
         output = Image.open(output_path)
-        st.image(output, caption="Your beach is now clean")
+        st.image(output, caption="Your Shore is now Restored")
 
 
 def main():
