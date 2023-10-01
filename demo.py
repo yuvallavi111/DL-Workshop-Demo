@@ -117,26 +117,23 @@ def load_image():
         "Select Cleaning Intensity:", ("Light", "Moderate", "Extensive")
     )
     no_of_iter = cleaning_degree_to_iterations(cleaning_degree)
-    progress_text = "Cleaning operation is in progress. Please wait."
     if uploaded_file is not None:
-        progress_bar = st.progress(0, text=progress_text)
-        image_data = uploaded_file.getvalue()
-        st.image(image_data)
-        input_path = os.path.join(root_folder, "datasets/dirty2clean/input.jpg")
-        with open(input_path, "wb") as f:
-            f.write(image_data)
-        test()
-        output_path = os.path.join(
-            root_folder, "results/dirty2clean/test_latest/images/input_fake.png"
-        )
-        progress_bar.progress(1 / no_of_iter, text=progress_text)
-        if no_of_iter > 1:
-            for i in range(no_of_iter - 1):
-                shutil.copyfile(output_path, input_path)
-                test()
-                progress_bar.progress((i + 2) / no_of_iter, text=progress_text)
-        output = Image.open(output_path)
-        progress_bar.empty()
+        with st.spinner("Cleaning operation is in progress. Please wait..."):
+            image_data = uploaded_file.getvalue()
+            st.image(image_data)
+            input_path = os.path.join(root_folder, "datasets/dirty2clean/input.jpg")
+            with open(input_path, "wb") as f:
+                f.write(image_data)
+            test()
+            output_path = os.path.join(
+                root_folder, "results/dirty2clean/test_latest/images/input_fake.png"
+            )
+            if no_of_iter > 1:
+                for i in range(no_of_iter - 1):
+                    shutil.copyfile(output_path, input_path)
+                    test()
+            output = Image.open(output_path)
+        st.success("Done!")
         st.image(output, caption="Your Shore is now Restored")
 
 
