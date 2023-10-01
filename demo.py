@@ -6,6 +6,7 @@ from data import create_dataset
 from models import create_model
 from util.visualizer import save_images
 from util import html
+import shutil
 import math
 
 
@@ -103,20 +104,39 @@ def test():
     webpage.save()  # save the HTML
 
 
+def cleaning_degree_to_iterations(cleaning_degree):
+    degrees_map = {"Light": 1, "Moderate": 3, "Extensive": 5}
+    if degrees_map.get(cleaning_degree) == None:
+        return 1
+    return degrees_map.get(cleaning_degree)
+
+
 def load_image():
     uploaded_file = st.file_uploader(label="Upload a Shore you would like to Restore")
+    cleaning_degree = st.selectbox(
+        "Select Cleaning Intensity:", ("Light", "Moderate", "Extensive")
+    )
+    no_of_iter = cleaning_degree_to_iterations(cleaning_degree)
+    progress_text = "Cleaning operation is in progress. Please wait."
     if uploaded_file is not None:
+        progress_bar = st.progress(0, text=progress_text)
         image_data = uploaded_file.getvalue()
         st.image(image_data)
-        with open(
-            os.path.join(root_folder, "datasets/dirty2clean/input.jpg"), "wb"
-        ) as f:
+        input_path = os.path.join(root_folder, "datasets/dirty2clean/input.jpg")
+        with open(input_path, "wb") as f:
             f.write(image_data)
         test()
         output_path = os.path.join(
             root_folder, "results/dirty2clean/test_latest/images/input_fake.png"
         )
+        progress_bar.progress(1 / no_of_iter, text=progress_text)
+        if no_of_iter > 1:
+            for i in range(no_of_iter - 1):
+                shutil.copyfile(output_path, input_path)
+                test()
+                progress_bar.progress((i + 2) / no_of_iter, text=progress_text)
         output = Image.open(output_path)
+        progress_bar.empty()
         st.image(output, caption="Your Shore is now Restored")
 
 
