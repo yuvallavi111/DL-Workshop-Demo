@@ -139,6 +139,10 @@ def load_image():
 
 def main():
     st.title("ShoreRestore")
+    st.write(
+        "Upload an image of a dirty shore and select the cleaning intensity to restore it. The result will be presented at the bottom of the page."
+    )
+
     load_image()
 
 
