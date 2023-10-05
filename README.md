@@ -1,6 +1,6 @@
 # ShoreRestore Demo
 
-## Usage
+## Getting Started
 
 In order to run locally, follow these steps:
 
@@ -15,3 +15,9 @@ streamlit run demo.py
 ```
 
 This application is also available online: https://shore-restore.streamlit.app/
+
+## Usage
+
+Click the "Upload a Shore" button to select an image of a shore you'd like to restore. Then, choose the cleaning intensity level: "Light," "Moderate," or "Extensive." The restored shore image will be automatically processed after every change of user input, and will appear below once the process is complete.
+
+That's it! Your shore image will be beautifully restored.
