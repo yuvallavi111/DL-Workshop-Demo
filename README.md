@@ -24,4 +24,4 @@ Click the "Upload a Shore" button to select an image of a shore you'd like to re
 
 That's it! Your shore image will be beautifully restored.
 
-Example dirty input images can be found under "examples" folder in this repository.
+You can find example dirty shore images in the "examples" folder of this repository. Use these images to see how ShoreRestore works.
